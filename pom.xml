@@ -87,7 +87,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<finalName>com-locavis-application</finalName>
+		<!--<finalName>com-locavis-application</finalName>-->
 	</build>
 	<repositories>
 		<repository>
