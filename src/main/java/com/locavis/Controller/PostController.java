@@ -15,7 +15,8 @@ public class PostController {
 
     @Autowired
     private PostService postService;
-    @RequestMapping
+
+    @PostMapping
     public ResponseEntity createPost(@RequestBody PostDto postDto){
         postService.createPost(postDto);
         return new ResponseEntity(HttpStatus.OK);
@@ -26,7 +27,7 @@ public class PostController {
         return new ResponseEntity(postService.showAllPosts(),HttpStatus.OK);
     }
 
-    @GetMapping("/get/(id)")
+    @GetMapping("/get/{id}")
     public ResponseEntity<PostDto> getSinglePost (@PathVariable @RequestBody Long id) {
         return new ResponseEntity (postService.readSinglePost(id), HttpStatus.OK);
     }
