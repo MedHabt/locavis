@@ -4,9 +4,10 @@ import com.locavis.exception.PostNotFoundException;
 import com.locavis.locavis.dto.PostDto;
 import com.locavis.model.Post;
 import com.locavis.repository.PostRepository;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -14,6 +15,8 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Service
 public class PostService{
 
@@ -22,6 +25,12 @@ public class PostService{
 
     @Autowired
     private PostRepository postRepository;
+
+    //Constructor for testing un PostServiceTest
+    public PostService(PostRepository postRepository, AuthService authService) {
+        this.postRepository = postRepository;
+        this.authService = authService;
+    }
 
     public void createPost(PostDto postDto){
         Post post = new Post();
