@@ -1,6 +1,6 @@
 package com.locavis.Controller;
 
-import com.locavis.locavis.dto.PostDto;
+import com.locavis.dto.PostDto;
 import com.locavis.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
