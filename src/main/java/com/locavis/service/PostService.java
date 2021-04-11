@@ -1,7 +1,7 @@
 package com.locavis.service;
 
 import com.locavis.exception.PostNotFoundException;
-import com.locavis.locavis.dto.PostDto;
+import com.locavis.dto.PostDto;
 import com.locavis.model.Post;
 import com.locavis.repository.PostRepository;
 import lombok.AllArgsConstructor;

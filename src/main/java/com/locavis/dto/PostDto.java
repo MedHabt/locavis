@@ -1,4 +1,4 @@
-package com.locavis.locavis.dto;
+package com.locavis.dto;
 
 public class PostDto {
     private Long id;
