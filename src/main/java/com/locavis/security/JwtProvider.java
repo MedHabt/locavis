@@ -21,7 +21,7 @@ public class JwtProvider {
     @PostConstruct
     public void init(){
         try{
-            keyStore = KeyStore.getInstance(KeyStore.getDefaultType());//KeyStore.getInstance("JKS");
+            keyStore = KeyStore.getInstance(KeyStore.getDefaultType()); //KeyStore.getInstance("JKS");
             InputStream resourceAsStream = getClass().getResourceAsStream("/locavisapplication.jks");
             keyStore.load(resourceAsStream, "password".toCharArray());
         }catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException ex) {
