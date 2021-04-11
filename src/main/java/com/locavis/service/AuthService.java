@@ -36,7 +36,7 @@ public class AuthService {
         user.setUserName(registerRequest.getUsername());
         user.setPassword(encoderPassword(registerRequest.getPassword()));
         user.setEmail(registerRequest.getEmail());
-
+        //TODO : utilise Optional pour vérifier si l'utilisateur existe déjà ou non comme dans l'exemple d'amigosCode
         userRepository.save(user);
     }
 
@@ -44,11 +44,12 @@ public class AuthService {
         return passwordEncoder.encode(password);
     }
 
-    public String login(LoginRequest loginRequest) {
+    public AuthenticationResponse login(LoginRequest loginRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        return jwtProvider.generateToken(authentication);
+        String authenticationToken =  jwtProvider.generateToken(authentication);
+        return new AuthenticationResponse(authenticationToken, loginRequest.getUsername());
     }
 
     public Optional<org.springframework.security.core.userdetails.User> getCurrentUser() {
