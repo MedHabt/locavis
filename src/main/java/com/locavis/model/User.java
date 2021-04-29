@@ -1,16 +1,26 @@
 package com.locavis.model;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table
+@EqualsAndHashCode
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Exclude
     private Long id;
     @Column
     private String userName;
     @Column
+    @EqualsAndHashCode.Exclude
     private String password;
     @Column
     private String email;
