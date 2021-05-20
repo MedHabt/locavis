@@ -4,6 +4,7 @@ import com.locavis.dto.LoginRequest;
 import com.locavis.dto.RegisterRequest;
 import com.locavis.service.AuthService;
 import com.locavis.service.AuthenticationResponse;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.http.HttpStatus;
@@ -30,23 +31,30 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity signup(@Valid @RequestBody RegisterRequest registerRequest, final BindingResult bindingResult){
-
-        //registerRequest.toString();
-
-        //try{
-            authService.signup(registerRequest);
-        /*}catch(Exception e){
-            bindingResult.rejectValue("email", "userData.email","An account already exists for this email.");
-            //model.addAttribute("registrationForm", registerRequest);
-            return new ResponseEntity(HttpStatus.BAD_REQUEST); //BAD_REQUEST);
-        }*/
-
+    public ResponseEntity signup(@Valid @RequestBody RegisterRequest registerRequest){
+        authService.signup(registerRequest);
         return new ResponseEntity(HttpStatus.CREATED);
+    }
+
+    @GetMapping(path = "/signup/confirm")
+    public String confirm(@RequestParam("token") String token) {
+        return authService.confirmToken(token);
     }
 
     @PostMapping("/login")
     public AuthenticationResponse login(@RequestBody LoginRequest loginRequest){
         return authService.login(loginRequest);
+    }
+
+    @GetMapping("/forgivenPassword/{email}")
+    public ResponseEntity ForgivenPasswordSendMail(@PathVariable String email){
+        authService.forgivenPasswordSendMail(email);
+        return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/changePassword")
+    public ResponseEntity ChangePassword(@RequestBody RegisterRequest registerRequest) {
+        authService.changePassword(registerRequest);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
     }
 }

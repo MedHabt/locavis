@@ -73,7 +73,7 @@ class PostServiceTest {
         postDto.setTitle("title post");
 
         LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUsername("El Mehdi");
+        loginRequest.setEmail("elmehdi.habti@gmail.com");
         loginRequest.setPassword("password");
 
         //when
